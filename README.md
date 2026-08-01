@@ -34,9 +34,10 @@ Output: `build/libs/dollymod-1.0.0.jar`
 | `init/ModItems.java` | Spawn egg |
 | `init/ModSounds.java` | SoundEvent ids |
 | `init/ModEvents.java` | Attributes + creative tab |
-| `client/DollyRenderer.java` | Draws Dolly (wolf model stub for now) |
-| `client/ClientModEvents.java` | Registers the renderer (client only) |
-| `assets/dollymod/textures/entity/dolly.png` | **Your skin goes here** |
+| `client/model/DollyModel.java` | Blockbench Beagle mesh + wolf-style sit/walk anims |
+| `client/DollyRenderer.java` | Draws Dolly with DollyModel |
+| `client/ClientModEvents.java` | Registers model layer + renderer (client only) |
+| `assets/dollymod/textures/entity/dolly.png` | Beagle texture (64×32) |
 | `assets/dollymod/sounds.json` | Maps sound events → audio (wolf placeholders) |
 
 ## Asset checklist

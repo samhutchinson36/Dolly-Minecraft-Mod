@@ -1,49 +1,52 @@
 package com.samhutchinson.dollymod.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.samhutchinson.dollymod.DollyMod;
+import com.samhutchinson.dollymod.client.model.DollyModel;
 import com.samhutchinson.dollymod.entity.DollyEntity;
-import net.minecraft.client.model.WolfModel;
-import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Draws Dolly in the world.
+ * Draws Dolly using {@link DollyModel} (your Blockbench Beagle mesh).
  *
- * For now we reuse the vanilla {@link WolfModel} (same bones/animations as a wolf).
- * That means sit, walk, and shake already look correct before any Blockbench work.
- *
- * Texture path expected:
- *   assets/dollymod/textures/entity/dolly.png
- *
- * --- When your Blockbench model is ready ---------------------------------------
- * 1. In Blockbench, use a Java Entity / Modded Entity project for 1.20+.
- * 2. Export the Java model class → put it at
- *      client/model/DollyModel.java
- *    Fix the package to {@code com.samhutchinson.dollymod.client.model} and rename
- *    the class to DollyModel if needed.
- * 3. Export the texture PNG →
- *      assets/dollymod/textures/entity/dolly.png
- *    (replace the placeholder).
- * 4. Register a ModelLayerLocation and bake it in
- *      EntityRenderersEvent.RegisterLayerDefinitions
- *    (see ClientModEvents).
- * 5. Change this renderer to use {@code new DollyModel<>(...)} instead of WolfModel.
- *
- * Note: vanilla WolfCollarLayer is hard-typed to Wolf's renderer generics, so collar
- * dye overlays are omitted here. Easy to re-add with a small custom layer later.
- *
- * No GeckoLib needed for this workflow — plain Forge Java entity models are enough.
+ * Texture: {@code assets/dollymod/textures/entity/dolly.png}
  */
-public class DollyRenderer extends MobRenderer<DollyEntity, WolfModel<DollyEntity>> {
-    /** Single texture for all Dolly states until you add angry/tame variants. */
+public class DollyRenderer extends MobRenderer<DollyEntity, DollyModel<DollyEntity>> {
     private static final ResourceLocation DOLLY_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(DollyMod.MOD_ID, "textures/entity/dolly.png");
 
     public DollyRenderer(EntityRendererProvider.Context context) {
-        // 0.5F = shadow radius under the mob (wolf uses the same).
-        super(context, new WolfModel<>(context.bakeLayer(ModelLayers.WOLF)), 0.5F);
+        super(context, new DollyModel<>(context.bakeLayer(DollyModel.LAYER_LOCATION)), 0.5F);
+    }
+
+    /**
+     * Same as WolfRenderer: feed the tail interest/wag angle into {@code setupAnim}
+     * as the {@code ageInTicks} parameter (vanilla naming is misleading here).
+     */
+    @Override
+    protected float getBob(DollyEntity entity, float partialTicks) {
+        return entity.getTailAngle();
+    }
+
+    /**
+     * Darken the model while wet (shake-dry), matching wolf behaviour.
+     */
+    @Override
+    public void render(DollyEntity entity, float entityYaw, float partialTicks, PoseStack poseStack,
+                       MultiBufferSource buffer, int packedLight) {
+        if (entity.isWet()) {
+            float shade = entity.getWetShade(partialTicks);
+            this.model.setColor(shade, shade, shade);
+        }
+
+        super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
+
+        if (entity.isWet()) {
+            this.model.setColor(1.0F, 1.0F, 1.0F);
+        }
     }
 
     @Override
