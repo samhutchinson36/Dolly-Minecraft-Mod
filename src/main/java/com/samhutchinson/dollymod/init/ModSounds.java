@@ -31,6 +31,7 @@ public class ModSounds {
 
     private static RegistryObject<SoundEvent> register(String name) {
         return SOUND_EVENTS.register(name,
-                () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DollyMod.MOD_ID, name)));
+                () -> SoundEvent.createVariableRangeEvent(
+                        ResourceLocation.fromNamespaceAndPath(DollyMod.MOD_ID, name)));
     }
 }

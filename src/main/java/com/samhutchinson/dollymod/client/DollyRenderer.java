@@ -6,7 +6,6 @@ import net.minecraft.client.model.WolfModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.layers.WolfCollarLayer;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -30,21 +29,21 @@ import net.minecraft.resources.ResourceLocation;
  * 4. Register a ModelLayerLocation and bake it in
  *      EntityRenderersEvent.RegisterLayerDefinitions
  *    (see ClientModEvents).
- * 5. Change this renderer to use {@code new DollyModel<>(...)} instead of WolfModel,
- *    and remove WolfCollarLayer if your mesh has no collar UV.
+ * 5. Change this renderer to use {@code new DollyModel<>(...)} instead of WolfModel.
+ *
+ * Note: vanilla WolfCollarLayer is hard-typed to Wolf's renderer generics, so collar
+ * dye overlays are omitted here. Easy to re-add with a small custom layer later.
  *
  * No GeckoLib needed for this workflow — plain Forge Java entity models are enough.
  */
 public class DollyRenderer extends MobRenderer<DollyEntity, WolfModel<DollyEntity>> {
     /** Single texture for all Dolly states until you add angry/tame variants. */
     private static final ResourceLocation DOLLY_TEXTURE =
-            new ResourceLocation(DollyMod.MOD_ID, "textures/entity/dolly.png");
+            ResourceLocation.fromNamespaceAndPath(DollyMod.MOD_ID, "textures/entity/dolly.png");
 
     public DollyRenderer(EntityRendererProvider.Context context) {
         // 0.5F = shadow radius under the mob (wolf uses the same).
         super(context, new WolfModel<>(context.bakeLayer(ModelLayers.WOLF)), 0.5F);
-        // Collar dye still works because Dolly extends Wolf; remove if you drop collar UVs.
-        this.addLayer(new WolfCollarLayer<>(this));
     }
 
     @Override
