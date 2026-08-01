@@ -1,6 +1,8 @@
 # DollyMod
 
-A Minecraft Forge 1.20.1 mod that adds **Dolly** — a tameable companion that behaves like a vanilla wolf (bones to tame, sit/follow/teleport, combat) with her own spawn egg, sounds, and texture slot.
+A Minecraft Forge 1.20.1 mod that adds **Dolly** — a tameable companion that behaves like a vanilla wolf (cooked chicken to tame, sit/follow/teleport, combat) with her own spawn egg, Beagle model, and howl.
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## Requirements
 
