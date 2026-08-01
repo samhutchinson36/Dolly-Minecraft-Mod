@@ -1,0 +1,44 @@
+{
+  "dolly_ambient": {
+    "subtitle": "subtitles.dollymod.dolly_ambient",
+    "sounds": [
+      "minecraft:mob/wolf/bark1",
+      "minecraft:mob/wolf/bark2",
+      "minecraft:mob/wolf/bark3"
+    ]
+  },
+  "dolly_hurt": {
+    "subtitle": "subtitles.dollymod.dolly_hurt",
+    "sounds": [
+      "minecraft:mob/wolf/hurt1",
+      "minecraft:mob/wolf/hurt2",
+      "minecraft:mob/wolf/hurt3"
+    ]
+  },
+  "dolly_death": {
+    "subtitle": "subtitles.dollymod.dolly_death",
+    "sounds": [
+      "minecraft:mob/wolf/death"
+    ]
+  },
+  "dolly_pant": {
+    "subtitle": "subtitles.dollymod.dolly_pant",
+    "sounds": [
+      "minecraft:mob/wolf/panting"
+    ]
+  },
+  "dolly_growl": {
+    "subtitle": "subtitles.dollymod.dolly_growl",
+    "sounds": [
+      "minecraft:mob/wolf/growl1",
+      "minecraft:mob/wolf/growl2",
+      "minecraft:mob/wolf/growl3"
+    ]
+  },
+  "dolly_whine": {
+    "subtitle": "subtitles.dollymod.dolly_whine",
+    "sounds": [
+      "minecraft:mob/wolf/whine"
+    ]
+  }
+}
