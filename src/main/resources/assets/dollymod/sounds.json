@@ -30,9 +30,7 @@
   "dolly_growl": {
     "subtitle": "subtitles.dollymod.dolly_growl",
     "sounds": [
-      "minecraft:mob/wolf/growl1",
-      "minecraft:mob/wolf/growl2",
-      "minecraft:mob/wolf/growl3"
+      "dollymod:dolly_howl"
     ]
   },
   "dolly_whine": {

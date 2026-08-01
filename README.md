@@ -22,7 +22,7 @@ In-game: Creative → Spawn Eggs → **Dolly Spawn Egg**, or `/summon dollymod:d
 ./gradlew build
 ```
 
-Output: `build/libs/dollymod-1.1.0.jar`
+Output: `build/libs/dollymod-1.1.1.jar`
 
 ## Project layout (learning map)
 
@@ -38,7 +38,8 @@ Output: `build/libs/dollymod-1.1.0.jar`
 | `client/DollyRenderer.java` | Draws Dolly with DollyModel |
 | `client/ClientModEvents.java` | Registers model layer + renderer (client only) |
 | `assets/dollymod/textures/entity/dolly.png` | Beagle texture (64×32) |
-| `assets/dollymod/sounds.json` | Maps sound events → audio (wolf placeholders) |
+| `assets/dollymod/sounds/dolly_howl.ogg` | Beagle howl (angry/growl sound) |
+| `assets/dollymod/sounds.json` | Maps sound events → audio |
 
 ## Asset checklist
 
