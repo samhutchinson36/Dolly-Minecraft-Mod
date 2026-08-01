@@ -14,7 +14,7 @@ export JAVA_HOME=/path/to/jdk-17   # if needed
 ./gradlew runClient
 ```
 
-In-game: Creative → Spawn Eggs → **Dolly Spawn Egg**, or `/summon dollymod:dolly`. Right-click with a bone to tame.
+In-game: Creative → Spawn Eggs → **Dolly Spawn Egg**, or `/summon dollymod:dolly`. Right-click with **cooked chicken** to tame (bones do nothing). Dolly is immortal to normal damage.
 
 ## Build a jar
 
