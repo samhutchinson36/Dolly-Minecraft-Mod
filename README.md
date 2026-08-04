@@ -1,6 +1,6 @@
 # DollyMod
 
-A Minecraft Forge 1.20.1 mod that adds **Dolly** — a tameable companion that behaves like a vanilla wolf (cooked chicken to tame, sit/follow/teleport, combat) with her own spawn egg, Beagle model, and howl.
+A Minecraft Forge 1.20.1 mod that adds **Dolly** — a tameable companion that behaves like a vanilla wolf (cooked chicken to tame, sit/follow/teleport, combat) with her own spawn egg, Beagle model, and howl. She will also snarf cooked chicken you drop on the ground.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
 
@@ -16,7 +16,7 @@ export JAVA_HOME=/path/to/jdk-17   # if needed
 ./gradlew runClient
 ```
 
-In-game: Creative → Spawn Eggs → **Dolly Spawn Egg**, or `/summon dollymod:dolly`. Right-click with **cooked chicken** to tame (bones do nothing). Dolly is immortal to normal damage.
+In-game: Creative → Spawn Eggs → **Dolly Spawn Egg**, or `/summon dollymod:dolly`. Right-click with **cooked chicken** to tame (bones do nothing). Drop cooked chicken on the ground and she’ll run over to eat it. Dolly is immortal to normal damage.
 
 ## Build a jar
 
@@ -24,14 +24,15 @@ In-game: Creative → Spawn Eggs → **Dolly Spawn Egg**, or `/summon dollymod:d
 ./gradlew build
 ```
 
-Output: `build/libs/dollymod-1.1.1.jar`
+Output: `build/libs/dollymod-1.2.1.jar`
 
 ## Project layout (learning map)
 
 | Path | Role |
 |------|------|
 | `DollyMod.java` | Mod entry (`@Mod`) — registers deferred content |
-| `entity/DollyEntity.java` | Extends `Wolf`; custom sound hooks |
+| `entity/DollyEntity.java` | Extends `Wolf`; chicken tame, immortal, floor-food goal |
+| `entity/ai/DollyEatDroppedChickenGoal.java` | Paths to dropped cooked chicken and eats it |
 | `init/ModEntities.java` | EntityType `dollymod:dolly` |
 | `init/ModItems.java` | Spawn egg |
 | `init/ModSounds.java` | SoundEvent ids |
