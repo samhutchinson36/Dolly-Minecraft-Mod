@@ -4,6 +4,11 @@ All notable changes to DollyMod are documented here.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/). Versioning follows [SemVer](https://semver.org/) (`mod_version` in `gradle.properties`).
 
+## [1.2.2] - 2026-08-04
+
+### Fixed
+- Dolly now eats dropped cooked chicken at full health (pathing stopped short of the old 1.5-block eat radius, so she stared instead of eating)
+
 ## [1.2.1] - 2026-08-04
 
 ### Fixed
