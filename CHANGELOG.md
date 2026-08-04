@@ -4,6 +4,12 @@ All notable changes to DollyMod are documented here.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/). Versioning follows [SemVer](https://semver.org/) (`mod_version` in `gradle.properties`).
 
+## [1.2.1] - 2026-08-04
+
+### Fixed
+- Sitting Dolly now stands up and eats dropped cooked chicken (eat goal priority raised above sit)
+- Clarified that floor chicken is always eaten, even at full health
+
 ## [1.2.0] - 2026-08-04
 
 ### Added

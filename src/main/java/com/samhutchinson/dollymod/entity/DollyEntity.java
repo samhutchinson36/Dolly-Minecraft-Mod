@@ -29,9 +29,9 @@ public class DollyEntity extends Wolf {
         super(entityType, level);
         // Entity invulnerability: most damage sources are ignored (see Entity#isInvulnerableTo).
         this.setInvulnerable(true);
-        // Priority 5: competes with follow/wander so she peels off for floor chicken.
-        // (Wolf registerGoals already ran inside super(); adding here appends our goal.)
-        this.goalSelector.addGoal(5, new DollyEatDroppedChickenGoal(this));
+        // Priority 1: must beat SitWhenOrderedToGoal (priority 2), which locks MOVE.
+        // At priority 5 she could never start while sitting, so setOrderedToSit(false) never ran.
+        this.goalSelector.addGoal(1, new DollyEatDroppedChickenGoal(this));
     }
 
     /**

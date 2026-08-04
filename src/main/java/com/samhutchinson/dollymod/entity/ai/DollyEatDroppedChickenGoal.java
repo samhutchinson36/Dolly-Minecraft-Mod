@@ -53,8 +53,9 @@ public class DollyEatDroppedChickenGoal extends Goal {
 
     @Override
     public void start() {
-        // Abandon sit — real Dolly would not stay put for chicken either.
+        // Must clear sit order or SitWhenOrderedToGoal (prio 2) restarts immediately after we interrupt it.
         this.dolly.setOrderedToSit(false);
+        this.dolly.setInSittingPose(false);
         this.recalculatePathTicks = 0;
         this.dolly.getNavigation().moveTo(this.targetChicken, MOVE_SPEED);
     }
@@ -84,18 +85,24 @@ public class DollyEatDroppedChickenGoal extends Goal {
         }
     }
 
+    /**
+     * Always consumes the chicken. Healing is optional and only applies if she's hurt —
+     * full-health Dolly still snarfs the item.
+     */
     private void eatChicken() {
         ItemStack stack = this.targetChicken.getItem();
         FoodProperties food = stack.getFoodProperties(this.dolly);
-        if (food != null && this.dolly.getHealth() < this.dolly.getMaxHealth()) {
-            this.dolly.heal((float) food.getNutrition());
-        }
 
+        // Always consume — healing is optional only when below max health.
         stack.shrink(1);
         if (stack.isEmpty()) {
             this.targetChicken.discard();
         } else {
             this.targetChicken.setItem(stack);
+        }
+
+        if (food != null && this.dolly.getHealth() < this.dolly.getMaxHealth()) {
+            this.dolly.heal((float) food.getNutrition());
         }
 
         this.dolly.playSound(SoundEvents.GENERIC_EAT, 1.0F,
