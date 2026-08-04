@@ -24,7 +24,7 @@ In-game: Creative → Spawn Eggs → **Dolly Spawn Egg**, or `/summon dollymod:d
 ./gradlew build
 ```
 
-Output: `build/libs/dollymod-1.2.2.jar`
+Output: `build/libs/dollymod-1.2.1.jar`
 
 ## Project layout (learning map)
 
