@@ -1,5 +1,6 @@
 package com.samhutchinson.dollymod.entity;
 
+import com.samhutchinson.dollymod.entity.ai.DollyEatDroppedChickenGoal;
 import com.samhutchinson.dollymod.init.ModSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
@@ -17,16 +18,20 @@ import net.minecraftforge.event.ForgeEventFactory;
 /**
  * Dolly is intentionally a thin subclass of the vanilla {@link Wolf}.
  *
- * Differences from a normal wolf on this feature branch:
+ * Differences from a normal wolf:
  * - Tamed with <b>cooked chicken</b> instead of bones (bones do nothing special).
  * - Immortal: {@link #setInvulnerable(boolean)} so she shrugs off mobs, lava, fall damage, etc.
  *   Creative-mode players and the void can still remove her if you ever need to.
+ * - Food devil: runs to eat <b>dropped</b> cooked chicken on the ground (even if sitting).
  */
 public class DollyEntity extends Wolf {
     public DollyEntity(EntityType<? extends Wolf> entityType, Level level) {
         super(entityType, level);
         // Entity invulnerability: most damage sources are ignored (see Entity#isInvulnerableTo).
         this.setInvulnerable(true);
+        // Priority 5: competes with follow/wander so she peels off for floor chicken.
+        // (Wolf registerGoals already ran inside super(); adding here appends our goal.)
+        this.goalSelector.addGoal(5, new DollyEatDroppedChickenGoal(this));
     }
 
     /**

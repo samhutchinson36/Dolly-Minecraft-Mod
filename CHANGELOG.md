@@ -4,6 +4,11 @@ All notable changes to DollyMod are documented here.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/). Versioning follows [SemVer](https://semver.org/) (`mod_version` in `gradle.properties`).
 
+## [1.2.0] - 2026-08-04
+
+### Added
+- Dolly runs to eat **cooked chicken** dropped on the ground (even if sitting); does not tame from floor food
+
 ## [1.1.1] - 2026-08-01
 
 ### Changed
